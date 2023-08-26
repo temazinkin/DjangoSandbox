@@ -1,4 +1,33 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+
+
+class User(AbstractUser):
+    class Sex:
+        MALE = 'male'
+        FEMALE = 'female'
+
+        CHOICES = (
+            (MALE, 'Мужчина'),
+            (FEMALE, 'Женщина'),
+        )
+
+    phone = models.CharField(
+        'телефон',
+        blank=True,
+        max_length=14,
+    )
+    sex = models.CharField(
+        'пол',
+        max_length=6,
+        choices=Sex.CHOICES,
+        default=Sex.FEMALE,
+    )
+    is_teacher = models.BooleanField(
+        'хочу создавать курсы',
+        default=False,
+    )
+
 
 
 class Node(models.Model):

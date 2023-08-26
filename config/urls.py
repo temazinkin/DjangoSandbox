@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path
 
 from base.views import users_list
+from base.views import register_user
 
 urlpatterns = [
     path('', users_list),
+    path('signup/', register_user),
     path('admin/', admin.site.urls),
 ]
